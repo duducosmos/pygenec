@@ -10,12 +10,15 @@ def read(filename):
 setup(
     name="pygenec",
     license="Apache License 2.0",
-    version='1.0',
+    version='1.0.0',
     author='Eduardo S. Pereira',
     author_email='pereira.somoza@gmail.com',
     packages=find_packages("src"),
     package_dir={"":"src"},
     description="Algoritmo Genetico em Python e Numpy",
-    lond_description=read("README.md"),
+    long_description=read("README.md"),
+    long_description_content_type="text/markdown",
+    url="https://github.com/duducosmos/pygenec",
+    include_package_data=True,
     install_requires=["numpy"]
 )
