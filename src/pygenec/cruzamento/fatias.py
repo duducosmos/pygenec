@@ -9,20 +9,44 @@ Versão 0.0.1.
 """
 
 from numpy.random import shuffle, randint
+from numpy import concatenate
 from .cruzamento import Cruzamento, NoCompatibleIndividualSize
 
 
-class Embaralhamento(Cruzamento):
+class Fatia(Cruzamento):
     """
     Gerador de população via embaralhanmento e cruzamento de um ponto.
 
     Entrada:
         tamanho_populacao - Tamanho final da população resultante.
     """
-    def __init__(self, tamanho_populacao):
-        super(Embaralhamento, self).__init__(tamanho_populacao)
+    def __init__(self, tamanho_populacao, pontos):
+        super(Fatia, self).__init__(tamanho_populacao)
+        self._pontos = pontos
 
     def cruzamento(self, progenitor1, progenitor2):
+        """
+        Cruzamento de dois indivíduos via embaralhanmento um pontos.
+        Os genes são fatiados e o cruzamento é realizado para cada fatia de
+        forma distinta.
+
+        Entrada:
+            ind1 - Primeiro indivíduo
+            ind2 - Segundo indivíduo
+        O tamanho de ambos os indivíduos deve ser igual, do contrário um erro
+        será levantado.
+        """
+        desc1 = []
+        desc2 = []
+        for i in range(1, len(self._pontos)):
+            i0, i1 = self._pontos[i-1], self._pontos[i]
+            tmp1, tmp2 = self._embaralhamento(progenitor1[i0:i1],
+                                              progenitor2[i0:i1])
+            desc1.append(tmp1)
+            desc2.append(tmp2)
+        return concatenate(desc1), concatenate(desc2)
+
+    def _embaralhamento(self, progenitor1, progenitor2):
         """
         Cruzamento de dois indivíduos via embaralhanmento um pontos.
 
