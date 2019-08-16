@@ -13,7 +13,7 @@ from numpy import concatenate
 from .cruzamento import Cruzamento, NoCompatibleIndividualSize
 
 
-class Fatia(Cruzamento):
+class Fatias(Cruzamento):
     """
     Gerador de população via embaralhanmento e cruzamento de um ponto.
 
@@ -21,7 +21,7 @@ class Fatia(Cruzamento):
         tamanho_populacao - Tamanho final da população resultante.
     """
     def __init__(self, tamanho_populacao, pontos):
-        super(Fatia, self).__init__(tamanho_populacao)
+        super(Fatias, self).__init__(tamanho_populacao)
         self._pontos = pontos
 
     def cruzamento(self, progenitor1, progenitor2):
