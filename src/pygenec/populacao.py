@@ -9,7 +9,7 @@ Versão 0.0.1.
 """
 
 from numpy.random import randint
-from numpy import argsort, unique, zeros
+from numpy import argsort, unique
 
 
 class Populacao:
