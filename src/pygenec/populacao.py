@@ -9,7 +9,8 @@ Versão 0.0.1.
 """
 
 from numpy.random import randint
-from numpy import argsort
+from numpy import argsort, unique, zeros
+
 
 class Populacao:
     """
@@ -33,11 +34,15 @@ class Populacao:
         """Gerador aleatório de população."""
         self.populacao = randint(0, 2, size=(self.tamanho_populacao,
                                              self.genes_totais),
-                                             dtype='b')
+                                 dtype='b')
+
     def avaliar(self):
         """Avalia e ordena a população."""
-        valores = self.avaliacao(self.populacao)
+        u, indices = unique(self.populacao, return_inverse=True, axis=0)
+        valores = self.avaliacao(u)
+        valores = valores[indices]
         ind = argsort(valores)
+
         self.populacao[:] = self.populacao[ind]
         valores = valores[ind]
         return valores[ind]
