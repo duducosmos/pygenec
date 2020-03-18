@@ -10,7 +10,7 @@ def read(filename):
 setup(
     name="pygenec",
     license="Apache License 2.0",
-    version='1.0.5',
+    version='1.0.6',
     author='Eduardo S. Pereira',
     author_email='pereira.somoza@gmail.com',
     packages=find_packages("src"),
@@ -20,5 +20,5 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/duducosmos/pygenec",
     include_package_data=True,
-    install_requires=["numpy"]
+    install_requires=["numpy", "pathos"]
 )
